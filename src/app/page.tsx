@@ -3,10 +3,11 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { ThemeToggle } from "../components/ThemeToggle";
 
 export default function Home() {
   return (
-    <div className="bg-background min-h-screen text-text font-mono">
+    <div className="bg-background dark:bg-dark-background min-h-screen text-text dark:text-dark-text font-sans">
       {/* Navbar */}
       <nav className="flex justify-between items-center p-9 max-w-6xl mx-auto">
         <h1 className="text-2xl font-bold font-serif border-b">Alex </h1>
@@ -15,7 +16,7 @@ export default function Home() {
             <li>
               <Link
                 href="#experience"
-                className="hover:text-accent transition-colors"
+                className="hover:text-accent dark:hover:text-dark-accent transition-colors"
               >
                 Experience
               </Link>
@@ -23,7 +24,7 @@ export default function Home() {
             <li>
               <Link
                 href="#projects"
-                className="hover:text-accent transition-colors"
+                className="hover:text-accent dark:hover:text-dark-accent transition-colors"
               >
                 My Projects
               </Link>
@@ -31,19 +32,20 @@ export default function Home() {
             <li>
               <Link
                 href="#contact"
-                className="hover:text-accent transition-colors"
+                className="hover:text-accent dark:hover:text-dark-accent transition-colors"
               >
                 Contact Me
               </Link>
             </li>
           </ul>
+          <ThemeToggle />
         </div>
       </nav>
 
       {/* Hero Section with Fixed Left Column and Scrollable Right Column */}
       <div className="flex flex-col md:flex-row min-h-[calc(100vh-80px)]">
         {/* Left Column - Fixed Content (Bio and Image) */}
-        <div className="md:w-1/2 bg-background p-6 md:p-10 md:sticky md:top-0 md:h-screen flex flex-col justify-center">
+        <div className="md:w-1/2 bg-background dark:bg-dark-background p-6 md:p-10 md:sticky md:top-0 md:h-screen flex flex-col justify-center">
           <div className="max-w-md mx-auto">
             <div className="w-48 h-48 rounded-3xl overflow-hidden shadow-lg relative mb-8 mx-auto md:mx-0">
               <Image
@@ -57,13 +59,15 @@ export default function Home() {
             <h2 className="text-4xl font-bold font-serif mb-4">
               I'm Alex Wangwe
             </h2>
-            <p className="text-xl text-gray-600 mb-6"> Software Developer🕺.</p>
-            <p className="text-gray-600 mb-8">
+            <p className="text-xl text-text-primary mb-6 font-[CutiveMono]">
+              Software Developer🕺.
+            </p>
+            <p className="text-text-primary mb-8">
               I’m passionate about software development as both a creative craft
               and a way to solve problems. I love turning ideas into
-              user-centered products and enjoy every step of it. For me, writing code isn’t just
-              about features; it’s about crafting digital experiences that make
-              life simpler and technology feel seamless.
+              user-centered products and enjoy every step of it. For me, writing
+              code isn’t just about features; it’s about crafting digital
+              experiences that make life simpler and technology feel seamless.
             </p>
           </div>
         </div>
@@ -99,11 +103,11 @@ export default function Home() {
           {/* Work Experience Section */}
           <div id="experience" className="mb-10">
             <h3 className="text-2xl font-bold font-serif mb-6">
-              My experiences
+              Featured experiences :
             </h3>
 
             <div className="space-y-5">
-              <div className="p-4 bg-card rounded-2xl shadow-lg transform transition-all hover:-translate-y-1 hover:shadow-xl">
+              <div className="p-4 bg-card dark:bg-dark-card rounded-2xl shadow-lg transform transition-all hover:-translate-y-1 hover:shadow-xl">
                 <div className="flex items-start">
                   <div className="w-24 h-12 bg-gray-200 rounded-full mr-4 flex-shrink-0 overflow-hidden relative">
                     <Image
@@ -115,7 +119,9 @@ export default function Home() {
                   </div>
                   <div>
                     <h4 className="text-lg font-bold">Software Developer</h4>
-                    <p className="text-gray-600 text-sm mt-1">PTech Systems</p>
+                    <p className="text-text-secondary dark:text-gray-400 text-sm mt-1">
+                      PTech Systems
+                    </p>
                     <p className="text-gray-500 text-xs mt-1">
                       Present - FreeLance
                     </p>
@@ -133,7 +139,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="p-4 bg-card rounded-2xl shadow-lg transform transition-all hover:-translate-y-1 hover:shadow-xl">
+              <div className="p-4 bg-card dark:bg-dark-card rounded-2xl shadow-lg transform transition-all hover:-translate-y-1 hover:shadow-xl">
                 <div className="flex items-start">
                   <div className="w-24 h-12 bg-gray-200 rounded-full mr-4 flex-shrink-0 overflow-hidden relative">
                     <Image
@@ -145,7 +151,9 @@ export default function Home() {
                   </div>
                   <div>
                     <h4 className="text-lg font-bold">Mobile Developer</h4>
-                    <p className="text-gray-600 text-sm mt-1">Krayo Africa</p>
+                    <p className="text-text-secondary dark:text-gray-400 text-sm mt-1">
+                      Krayo Africa
+                    </p>
                     <p className="text-gray-500 text-xs mt-1">
                       Nov 2023 - May 2024
                     </p>
@@ -159,9 +167,9 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="p-4 bg-card rounded-2xl shadow-lg transform transition-all hover:-translate-y-1 hover:shadow-xl">
+              <div className="p-4 bg-card dark:bg-dark-card rounded-2xl shadow-lg transform transition-all hover:-translate-y-1 hover:shadow-xl">
                 <div className="flex items-start">
-                  <div className="w-22 h-10 bg-gray-200 rounded-full mr-4 flex-shrink-0 overflow-hidden relative">
+                  <div className="w-24 h-10 bg-gray-200 rounded-full mr-4 flex-shrink-0 overflow-hidden relative">
                     <Image
                       src="/norwa.png"
                       alt="Company Logo"
@@ -171,7 +179,9 @@ export default function Home() {
                   </div>
                   <div>
                     <h4 className="text-lg font-bold">Web Developer Intern</h4>
-                    <p className="text-gray-600 text-sm mt-1">Norwa Africa</p>
+                    <p className="text-text-secondary dark:text-gray-400 text-sm mt-1">
+                      Norwa Africa
+                    </p>
                     <p className="text-gray-500 text-xs mt-1">
                       Jan 2023 - Mar 2023
                     </p>
@@ -196,7 +206,7 @@ export default function Home() {
               More of my projects
             </h3>
             <div>
-              <p className="text-gray-600 mb-4">
+              <p className="text-text-primary  mb-4">
                 I have worked on various projects, both personal and
                 professional, that showcase my skills in software development.
                 Check them out in my{" "}
@@ -205,7 +215,7 @@ export default function Home() {
                   className="text-green-600 hover:underline text-2xl"
                 >
                   {" "}
-                  Github
+                  GitHub
                 </Link>
               </p>
             </div>
@@ -214,15 +224,15 @@ export default function Home() {
           {/* Skills Section */}
           <div id="skills" className="max-w-6xl mx-auto px-6 py-16">
             <h3 className="text-2xl font-serif font-bold mb-10 border-b pb-4 inline-block">
-              Technologies I've used:
+              My Toolbox:
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-8 max-w-4xl">
               {/* Frontend Development */}
               <div>
-                <h4 className="text-lg font-medium mb-4 text-gray-800">
+                <h4 className="text-lg font-medium mb-4 text-text-primary">
                   Tech Stack 🎨
                 </h4>
-                <ul className="space-y-3 text-gray-600">
+                <ul className="space-y-3 text-text-secondary">
                   <li>TypeScript</li>
                   <li>React Native</li>
                   <li>React.js / Next.js</li>
@@ -232,10 +242,10 @@ export default function Home() {
               </div>
               {/* Other Skills */}
               <div>
-                <h4 className="text-lg font-medium mb-4 text-gray-800">
+                <h4 className="text-lg font-medium mb-4 text-text-primary">
                   Tools 🛠️
                 </h4>
-                <ul className="space-y-3 text-gray-600">
+                <ul className="space-y-3 text-text-secondary">
                   <li>Git / GitHub</li>
                   <li>Wordpress/Joomla</li>
                 </ul>
@@ -243,8 +253,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Spacer */}
-          <div className="my-16 border-t border-gray-300"></div>
+         
 
           {/* Get in Touch Section */}
           <div
@@ -254,9 +263,9 @@ export default function Home() {
             <h3 className="text-2xl font-serif font-bold mb-6 inline-block">
               Get in Touch
             </h3>
-            <p className="text-gray-600 mb-8 max-w-2xl">
-              I'm always open to new projects, creative ideas or opportunities
-              . Feel free to reach out!
+            <p className="text-text-primary mb-8 max-w-2xl">
+              I'm always open to new projects, creative ideas or opportunities .
+              Feel free to reach out!
             </p>
 
             <div className="flex flex-col md:flex-row gap-8 items-start">
@@ -276,33 +285,35 @@ export default function Home() {
       {/* Footer */}
       <footer className="py-12 border-t border-gray-200 font-mono">
         <div className="max-w-6xl mx-auto px-4 md:flex md:justify-between md:items-center">
-          <div className="text-center md:text-left mb-6 md:mb-0">
+          <div className="text-center md:text-left mb-6 md:mb-0 font-[CutiveMono]">
             <h4 className="text-xl font-bold">Alex Wangwe</h4>
-            <p className="mt-2 text-gray-600">Front-End Developer</p>
+            <p className="mt-2 text-text-secondary">
+              Front-End Developer
+            </p>
           </div>
           <div className="flex justify-center md:justify-end space-x-6">
             <a
               href="https://github.com/alexanderwangwe"
-              className="text-gray-600 hover:text-accent transition-colors"
+              className="text-text-secondary hover:text-accent dark:hover:text-dark-accent transition-colors"
             >
               GitHub
             </a>
             <a
               href="https://www.linkedin.com/in/alexander-wangwe/"
-              className="text-gray-600 hover:text-accent transition-colors"
+              className="text-text-secondary hover:text-accent dark:hover:text-dark-accent transition-colors"
             >
               LinkedIn
             </a>
             <a
               href="https://www.strava.com/athletes/95879820"
-              className="text-gray-600 hover:text-accent transition-colors"
+              className="text-text-secondary  hover:text-accent dark:hover:text-dark-accent transition-colors"
             >
               Strava
             </a>
           </div>
         </div>
         <div className="max-w-6xl mx-auto px-4 mt-8 text-center">
-          <p className="text-gray-500">
+          <p className="text-gray-600 ">
             © {new Date().getFullYear()} Alex Wangwe. All rights reserved.
           </p>
         </div>

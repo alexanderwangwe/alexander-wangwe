@@ -1,5 +1,6 @@
-/** @type {import('tailwindcss').Config} */
+/** @type {import'tailwindcss').Config} */
 module.exports = {
+  darkMode: "class", // This enables manual dark mode control via CSS classes
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -12,6 +13,15 @@ module.exports = {
         text: "#181818",
         accent: "#000000",
         card: "#FFFFFF",
+        // Dark mode colors
+        "dark-background": "#0a0a0a",
+        "dark-text": "#ededed",
+        "dark-accent": "#ffffff",
+        "dark-card": "#1a1a1a",
+        // Custom text colors for better readability
+        "text-primary": "#1e293b", // Warm dark slate
+        "text-secondary": "#334155", // Medium slate
+        "text-muted": "#64748b", // Light slate for less important text
       },
       fontFamily: {
         sans: ["var(--font-geist-sans)"],

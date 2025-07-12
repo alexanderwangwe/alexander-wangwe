@@ -8,15 +8,13 @@
 :root {
   --background: #FAF7F2;
   --foreground: #181818;
+  --font-sans: var(--font-geist-sans, Arial, Helvetica, sans-serif);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #181818;
-    --foreground: #FAF7F2;
-  }
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
 }
-
 
 body {
   color: var(--foreground);
