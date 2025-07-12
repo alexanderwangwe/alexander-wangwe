@@ -63,10 +63,9 @@ export default function Home() {
               Software Developer🕺.
             </p>
             <p className="text-text-primary mb-8">
-              I’m passionate about software development as both a creative craft
-              and a way to solve problems. I love turning ideas into
+              I'm passionate about software development as both a creative craft              and a way to solve problems. I love turning ideas into
               user-centered products and enjoy every step of it. For me, writing
-              code isn’t just about features; it’s about crafting digital
+              code isn't just about features; it's about crafting digital
               experiences that make life simpler and technology feel seamless.
             </p>
           </div>

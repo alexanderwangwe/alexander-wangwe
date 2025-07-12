@@ -16,6 +16,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Alex Wangwe| Software Developer",
   description: "FrontEnd Software Developer.",
+  icons: {
+    icon: '/alex.ico',
+  },
 };
 
 export default function RootLayout({
