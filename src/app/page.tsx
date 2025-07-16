@@ -63,7 +63,8 @@ export default function Home() {
               Software Developer🕺.
             </p>
             <p className="text-text-primary mb-8">
-              I'm passionate about software development as both a creative craft              and a way to solve problems. I love turning ideas into
+              I'm passionate about software development as both a creative craft
+              and a way to solve problems. I love turning ideas into
               user-centered products and enjoy every step of it. For me, writing
               code isn't just about features; it's about crafting digital
               experiences that make life simpler and technology feel seamless.
@@ -252,8 +253,6 @@ export default function Home() {
             </div>
           </div>
 
-         
-
           {/* Get in Touch Section */}
           <div
             id="contact"
@@ -286,9 +285,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-4 md:flex md:justify-between md:items-center">
           <div className="text-center md:text-left mb-6 md:mb-0 font-[CutiveMono]">
             <h4 className="text-xl font-bold">Alex Wangwe</h4>
-            <p className="mt-2 text-text-secondary">
-              Front-End Developer
-            </p>
+            <p className="mt-2 text-text-secondary">Front-End Developer</p>
           </div>
           <div className="flex justify-center md:justify-end space-x-6">
             <a
