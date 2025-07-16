@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ThemeToggle } from "../components/ThemeToggle";
@@ -57,16 +56,16 @@ export default function Home() {
               />
             </div>
             <h2 className="text-4xl font-bold font-serif mb-4">
-              I'm Alex Wangwe
+              I&apos;m Alex Wangwe
             </h2>
             <p className="text-xl text-text-primary mb-6 font-[CutiveMono]">
               Software Developer🕺.
             </p>
             <p className="text-text-primary mb-8">
-              I'm passionate about software development as both a creative craft
+              I&apos;m passionate about software development as both a creative craft
               and a way to solve problems. I love turning ideas into
               user-centered products and enjoy every step of it. For me, writing
-              code isn't just about features; it's about crafting digital
+              code isn&apos;t just about features; it&apos;s about crafting digital
               experiences that make life simpler and technology feel seamless.
             </p>
           </div>
@@ -123,7 +122,7 @@ export default function Home() {
                       PTech Systems
                     </p>
                     <p className="text-gray-500 text-xs mt-1">
-                      Present - FreeLance
+                      Present - Freelance
                     </p>
                     <p className="mt-2 text-sm">
                       Collaborate in designing, developing, and maintaining
@@ -262,7 +261,7 @@ export default function Home() {
               Get in Touch
             </h3>
             <p className="text-text-primary mb-8 max-w-2xl">
-              I'm always open to new projects, creative ideas or opportunities .
+              I&apos;m always open to new projects, creative ideas or opportunities .
               Feel free to reach out!
             </p>
 
