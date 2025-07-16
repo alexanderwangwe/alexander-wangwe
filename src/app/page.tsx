@@ -62,11 +62,12 @@ export default function Home() {
               Software Developer🕺.
             </p>
             <p className="text-text-primary mb-8">
-              I&apos;m passionate about software development as both a creative craft
-              and a way to solve problems. I love turning ideas into
+              I&apos;m passionate about software development as both a creative
+              craft and a way to solve problems. I love turning ideas into
               user-centered products and enjoy every step of it. For me, writing
-              code isn&apos;t just about features; it&apos;s about crafting digital
-              experiences that make life simpler and technology feel seamless.
+              code isn&apos;t just about features; it&apos;s about crafting
+              digital experiences that make life simpler and technology feel
+              seamless.
             </p>
           </div>
         </div>
@@ -261,8 +262,8 @@ export default function Home() {
               Get in Touch
             </h3>
             <p className="text-text-primary mb-8 max-w-2xl">
-              I&apos;m always open to new projects, creative ideas or opportunities .
-              Feel free to reach out!
+              I&apos;m always open to new projects, creative ideas or
+              opportunities . Feel free to reach out!
             </p>
 
             <div className="flex flex-col md:flex-row gap-8 items-start">
