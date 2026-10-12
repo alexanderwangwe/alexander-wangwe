@@ -1,8 +1,26 @@
 @import "tailwindcss";
 
+/* Class-based dark mode: follows the toggle (html.dark), not the OS setting */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-serif: Georgia, Cambria, "Times New Roman", Times, serif;
+
+  --color-background: #FAF7F2;
+  --color-text: #181818;
+  --color-accent: #000000;
+  --color-card: #FFFFFF;
+  --color-dark-background: #0a0a0a;
+  --color-dark-text: #ededed;
+  --color-dark-accent: #ffffff;
+  --color-dark-card: #1a1a1a;
+  --color-text-primary: #1e293b;
+  --color-text-secondary: #334155;
+  --color-text-muted: #64748b;
+
+  --shadow-card: 0 10px 30px -5px rgba(0, 0, 0, 0.1);
 }
 
 :root {
