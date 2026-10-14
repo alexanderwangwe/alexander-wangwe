@@ -161,7 +161,7 @@ export default function Home() {
             Alex<span style={{ color: "var(--accent)" }}>.</span>
           </a>
           <div style={{ display: "flex", alignItems: "center", gap: "4px 18px", fontSize: 14 }}>
-            {[["#about", "About"], ["#work", "Work"], ["#contact", "Contact"]].map(([href, label]) => (
+            {[["#about", "About"], ["#experience", "Experience"], ["#cases", "Case studies"], ["#contact", "Contact"]].map(([href, label]) => (
               <a key={href} href={href} className="ul" style={{ color: "var(--soft)" }}>{label}</a>
             ))}
             <ThemeToggle />
