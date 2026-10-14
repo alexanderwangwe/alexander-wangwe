@@ -1,44 +1,103 @@
 @import "tailwindcss";
 
-/* Class-based dark mode: follows the toggle (html.dark), not the OS setting */
-@custom-variant dark (&:where(.dark, .dark *));
-
-@theme {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-serif: Georgia, Cambria, "Times New Roman", Times, serif;
-
-  --color-background: #FAF7F2;
-  --color-text: #181818;
-  --color-accent: #000000;
-  --color-card: #FFFFFF;
-  --color-dark-background: #0a0a0a;
-  --color-dark-text: #ededed;
-  --color-dark-accent: #ffffff;
-  --color-dark-card: #1a1a1a;
-  --color-text-primary: #1e293b;
-  --color-text-secondary: #334155;
-  --color-text-muted: #64748b;
-
-  --shadow-card: 0 10px 30px -5px rgba(0, 0, 0, 0.1);
-}
-
 :root {
-  --background: #FAF7F2;
-  --foreground: #181818;
-  --font-sans: var(--font-geist-sans, Arial, Helvetica, sans-serif);
+  --bg: #FAFAFA; --text: #111113; --soft: #3F3F46; --muted: #5F5F68;
+  --card: #FFFFFF; --border: #E4E4E7; --accent: #0B5D3B;
+  --ease: cubic-bezier(.2, .7, .2, 1);
+  color-scheme: light;
 }
-
 .dark {
-  --background: #0a0a0a;
-  --foreground: #ededed;
-  --color-text-primary: #e2e8f0;
-  --color-text-secondary: #cbd5e1;
-  --color-text-muted: #94a3b8;
+  --bg: #0B0B0C; --text: #EDEDED; --soft: #C9C9CF; --muted: #A1A1AA;
+  --card: #141416; --border: #26262A; --accent: #2F9E6A;
+  color-scheme: dark;
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: var(--font-sans, Arial, Helvetica, sans-serif);
+html { scroll-behavior: smooth; }
+body { --serif: var(--font-instrument), Georgia, serif; margin: 0; background: var(--bg); color: var(--text); font-family: var(--font-geist-sans), system-ui, sans-serif; line-height: 1.6; transition: background-color .4s, color .4s; }
+a { color: inherit; }
+
+/* Theme icons: sun shows in dark, moon in light */
+.when-dark { display: none; }
+.when-light { display: contents; }
+.dark .when-dark { display: contents; }
+.dark .when-light { display: none; }
+
+/* Two-column layout: pinned profile from 900px */
+.layout { display: flex; flex-direction: column; gap: 56px; }
+.aside { display: flex; flex-direction: column; gap: 20px; }
+.index { display: none; }
+.pol-wrap { width: 168px; }
+@media (min-width: 900px) {
+  .layout { flex-direction: row; align-items: flex-start; gap: clamp(56px, 6vw, 96px); }
+  .aside { flex: 0 0 300px; position: sticky; top: 32px; max-height: calc(100vh - 64px); overflow-y: auto; scrollbar-width: none; }
+  .main { flex: 1 1 0; min-width: 0; }
+  .index { display: flex; }
+  .pol-wrap { width: 150px; }
+}
+
+/* Scroll-spy index */
+.ix { color: var(--muted); transition: color .3s; }
+.ix .bar { width: 12px; background: var(--border); transition: width .35s var(--ease), background-color .3s; }
+.ix:hover .bar { width: 22px; }
+.ix.on { color: var(--text); }
+.ix.on .bar { width: 28px; background: var(--accent); }
+
+/* Motion */
+@keyframes rise { from { opacity: 0; translate: 0 16px; } to { opacity: 1; translate: 0 0; } }
+.rise { animation: rise .8s var(--ease) both; }
+@keyframes cycle {
+  0%, 20% { transform: translateY(0); } 25%, 45% { transform: translateY(-1.1em); }
+  50%, 70% { transform: translateY(-2.2em); } 75%, 95%, 100% { transform: translateY(-3.3em); }
+}
+.rot { display: inline-block; height: 1.1em; overflow: hidden; vertical-align: bottom; }
+.rot > span { display: flex; flex-direction: column; animation: cycle 9s cubic-bezier(.7, 0, .3, 1) infinite; }
+.rot > span > span { height: 1.1em; line-height: 1.1em; white-space: nowrap; }
+@keyframes twinkle { 0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; } 50% { transform: scale(.65) rotate(45deg); opacity: .55; } }
+.twinkle { transform-box: fill-box; transform-origin: center; animation: twinkle 3.2s ease-in-out infinite; }
+@keyframes steam { 0% { transform: translateY(2px); opacity: 0; } 50% { opacity: .9; } 100% { transform: translateY(-4px); opacity: 0; } }
+.steam { transform-box: fill-box; animation: steam 2.4s ease-in-out infinite; }
+@keyframes bob { 0%, 100% { translate: 0 0; rotate: -4deg; } 50% { translate: 0 -5px; rotate: 3deg; } }
+.bob { animation: bob 2.8s ease-in-out infinite; }
+@keyframes wiggle { 0%, 100% { rotate: 0deg; } 25% { rotate: -12deg; } 75% { rotate: 12deg; } }
+@keyframes pop { 0% { opacity: 0; scale: .5; } 70% { opacity: 1; scale: 1.08; } 100% { opacity: 1; scale: 1; } }
+
+/* Scroll reveal */
+.rv { opacity: 0; translate: 0 28px; transition: opacity .8s var(--ease), translate .8s var(--ease); }
+.rv.in { opacity: 1; translate: 0 0; }
+.rv .st { opacity: 0; }
+.rv.in .st { animation: rise .7s var(--ease) both; }
+.draw { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.4s .35s cubic-bezier(.6, 0, .2, 1); }
+.in .draw { stroke-dashoffset: 0; }
+.doo { display: block; margin-bottom: 14px; transform-origin: 30% 70%; transition: rotate .45s var(--ease); }
+.rv .doo { opacity: 0; }
+.rv.in .doo { animation: pop .7s .15s var(--ease) both; }
+section:hover .doo { rotate: -7deg; }
+.pol { rotate: -4deg; transition: rotate .6s var(--ease); }
+.pol:hover { rotate: 0deg; }
+.wd { transition: opacity .35s ease; }
+
+/* Hovers */
+.btn { transition: transform .2s; }
+.btn:hover { transform: translateY(-2px); }
+.card { transition: transform .3s var(--ease); }
+.card:hover { transform: translateY(-3px); }
+.arr { display: inline-block; transition: transform .3s var(--ease); }
+.row:hover .arr { transform: translate(4px, -4px); }
+.ul { text-decoration: none; background-image: linear-gradient(currentColor, currentColor); background-size: 0% 1.5px; background-repeat: no-repeat; background-position: 0 100%; transition: background-size .35s; }
+.ul:hover { background-size: 100% 1.5px; }
+.soc .ic { transition: transform .35s var(--ease); }
+.soc:hover .ic { transform: rotate(-10deg) scale(1.08); }
+.soc:hover .ic svg { animation: wiggle .5s ease-in-out; }
+.soc:hover .arr { transform: translate(3px, -3px); }
+.top svg { transition: transform .3s; }
+.top:hover svg { transform: translateY(-3px); }
+
+/* No-JS: show everything */
+html:not(.js) .rv, html:not(.js) .rv .st, html:not(.js) .rv .doo { opacity: 1; translate: none; }
+html:not(.js) .draw { stroke-dashoffset: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .rv, .rv .st, .rv .doo { opacity: 1 !important; translate: none !important; }
+  .draw { stroke-dashoffset: 0 !important; }
 }
