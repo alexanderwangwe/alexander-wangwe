@@ -21,8 +21,8 @@ const instrument = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "Alex Wangwe | Business & Product Analyst",
-  description: "Business and product analyst with a developer's background, based in Nairobi.",
+  title: "Alex Wangwe | Product Management, Business & Technology",
+  description: "Product, business and technology professional curious about how things work and how to make them better, based in Nairobi.",
   icons: {
     icon: '/alex.ico',
   },

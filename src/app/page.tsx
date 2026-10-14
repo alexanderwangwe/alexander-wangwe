@@ -15,23 +15,59 @@ const delay = (ms: number): CSSProperties => ({ animationDelay: `${ms}ms` });
 const INDEX = [
   ["about", "About"],
   ["experience", "Experience"],
+  ["cases", "Case studies"],
   ["toolbox", "What I bring"],
   ["contact", "Contact"],
 ] as const;
 
 const EXPERIENCE: { logo?: string; role: string; when: string; co: string; text: string }[] = [
-  { logo: "/aw.png", role: "Independent Consultant", when: "2026 – Now", co: "AW Digital Solutions", text: "Two client engagements, found through my network and cold outreach. For a private cardiac clinic, I gathered their needs and built a website and Facebook presence, giving them a visible online presence. For a clothing brand, I built a custom Shopify theme with UI and UX choices aimed at better conversion." },
-  { logo: "/swift.png", role: "Technical Support and QA Analyst (Intern)", when: "Apr – Jun 2026", co: "Swift Hailing", text: "Worked with 3 engineers and 2 business operations staff on a point-of-sale rollout. Ran manual QA across the POS and manager apps and the store web dashboard, wrote user manuals, trained users and visited stores. Spotted that online and cash payments were hard to reconcile and proposed a clearer way to record them." },
-  { logo: "/mpesa.png", role: "Observability Engineering Associate", when: "Jan – Apr 2026", co: "M-Pesa Africa", text: "Lead associate on a research task. Interviewed members of the monitoring team, turned what I heard into requirements, and sketched a Figma dashboard for logs, metrics, events and alerts. Presented it to the team lead, who responded positively. The contract ended before the build." },
-  { logo: "/ptechlogo.png", role: "Junior Web Developer", when: "2023 – Now", co: "P-Tech Systems", text: "Build and maintain web applications for client businesses including Norwa Africa, SbInnovations, Satte and Sigma Engineering. At Norwa, a company of 15+ people, I worked on the company website and CRM and gathered business needs from the team." },
+  { logo: "/aw.png", role: "Independent Digital Consultant", when: "Jun 2026 – Now", co: "AW Digital Solutions", text: "Worked directly with clients to understand their business needs, define website requirements, and shape digital solutions from concept to implementation. For a cardiovascular clinic, translated the doctor’s goals into a website designed to expand the clinic’s online reach and provide a platform for sharing educational articles with patients and students. Also collaborated with a clothing brand to plan and develop a customised Shopify store, making UI and UX decisions to support its online shopping experience." },
+  { logo: "/swift.png", role: "Technical Support and QA Analyst", when: "Apr – Jun 2026", co: "Swift Hailing Ltd", text: "Handled user support tickets and conducted quality assurance testing across the POS app, Manager app, and web dashboard. Identified difficulties tracking payments made partly through M-Pesa and partly in cash, then worked with the team to develop a solution that reduced reconciliation errors and made split payments easier to track. Wrote user manuals to help e-commerce clients understand the system’s features and use them effectively." },
+  { logo: "/mpesa.png", role: "Observability Engineering Associate", when: "Jan – Mar 2026", co: "M-Pesa Africa", text: "Joined the observability engineering team to research how Dynatrace, Azure, and Grafana could be integrated into a federated monitoring system. Evaluated the tools’ capabilities and contributed to the frontend design of a unified monitoring dashboard, which received approval ahead of a management presentation. The research and design work helped inform the proposed system’s direction before development." },
+  { role: "Academic Technical Lead", when: "2024 – 2025", co: "Challenge Driven Education Project, Strathmore University", text: "Led the development of a waste-management awareness website in collaboration with the Strathmore Environmental Club. Coordinated requirements, design, and development to turn the project’s goals into a functional platform that supported environmental awareness and education." },
+  { logo: "/ptechlogo.png", role: "Junior Web Developer", when: "2023 – 2025", co: "P-Tech Systems", text: "Designed website pages and product listings, uploaded product descriptions and images, and maintained websites for clients in the solar and energy sector, including Satte and SB Innovations, applying SEO best practices. During an internship with Norwa Africa, collaborated with stakeholders to shape website designs aimed at improving conversion. Later designed and developed the Sigma Engineering website from concept to implementation, helping improve the company’s online visibility and reach potential customers." },
 ];
 
 
+const PROOF: Record<string, string> = {
+  "cardiovascular clinic": "https://www.nabadeheartclinic.co.ke/",
+  Satte: "https://www.ssatte.com/",
+  "SB Innovations": "https://sbinnovationsltd.com/",
+  "Norwa Africa": "https://www.norwaafrica.com/",
+  "Sigma Engineering": "https://sigmaengineering.co.ke/",
+};
+// turns client names in experience text into live links, as proof of the work
+const withProof = (text: string) =>
+  text.split(new RegExp(`(${Object.keys(PROOF).join("|")})`)).map((part, i) =>
+    PROOF[part] ? <a key={i} href={PROOF[part]} target="_blank" rel="noopener noreferrer" style={{ color: "var(--text)", textDecoration: "underline", textUnderlineOffset: 3 }}>{part}</a> : part
+  );
+
+type Block = [string, string | string[]];
+// shots: add image paths from /public; link: add the live URL when ready
+const CASES: { name: string; tags: string; tagline: string; shots?: string[]; link?: string; blocks: Block[] }[] = [
+  { name: "Krayo", shots: ["/krayo/Introprototype.png", "/krayo/Introprototype-1.png", "/krayo/Introprototype-2.png", "/krayo/Introprototype-3.png", "/krayo/Introprototype-4.png", "/krayo/Introprototype-5.png", "/krayo/Introprototype-6.png", "/krayo/Introprototype-7.png", "/krayo/Introprototype-8.png"], tags: "Product development · Mobile development · Team collaboration", tagline: "Building a marketplace for artists", blocks: [
+    ["Overview", "Krayo is a marketplace concept designed to help artists sell their work. I worked as a mobile developer in a small team, contributing to a prototype that we developed far enough to support our application to Y Combinator."],
+    ["The idea", "The project centred on creating a digital marketplace where artists could bring their work to a wider audience and connect their creative work with potential buyers."],
+    ["My role", "As a mobile developer, I contributed to the product’s development as part of a small team. My experience on Krayo gave me exposure to the process of turning a product idea into a working prototype and collaborating with others to move it forward."],
+    ["Building towards a prototype", "Our team developed the concept into a prototype substantial enough to support a Y Combinator application. This required us to move beyond discussing the idea and work towards a tangible product that could communicate what we were building."],
+    ["What I took away", "Krayo was an opportunity to experience the early stages of building a digital product with a small team. It strengthened my interest in the relationship between an idea, the people it serves, and the technology needed to bring it to life."],
+  ] },
+  { name: "Route11", shots: ["/route11/home-hero.png", "/route11/home-how-it-works.png", "/route11/about-intro.png", "/route11/about-infrastructure.png"], link: "https://route11.vercel.app/", tags: "Product strategy · User experience · Service design · Founder", tagline: "Making the journey part of the experience", blocks: [
+    ["Overview", "Route11 is a Nairobi-based event mobility platform designed to make getting to concerts, festivals, and other city events easier to plan. As its founder, I am shaping a service that connects event discovery with organised transport, so people can focus on the experience instead of worrying about how they’ll get there and back."],
+    ["The problem", "Going to an event is about more than getting a ticket. Attendees also need to figure out their transport, coordinate their plans, and work out how they’ll get home after the event. Late-night travel and unpredictable ride-hailing prices can make the journey feel like a separate problem to solve. Route11 explores a more organised alternative: arranging transport before the event begins."],
+    ["My role", "As the founder, I have been shaping the product concept, defining the booking experience, and translating the service idea into a working web platform. This involves considering the needs of event attendees alongside the practical requirements of organising shuttle transport."],
+    ["Shaping the experience", ["Find an event: Discover an event and its available transport options.", "Choose a pickup hub: Select a convenient departure point.", "Plan the journey: Choose the available departure and return options.", "Select a seat: Reserve a specific seat on the shuttle.", "Book with clarity: Pay a fixed price for the planned journey and receive a digital boarding pass.", "The service also explores a VIP option for people who want a more private transport experience."]],
+    ["Key product decisions", ["A journey, not just a ride. The experience is designed around attending an event, including the return journey, rather than treating each trip as a separate transaction.", "Clarity before commitment. Fixed pricing, pickup hubs, and seat selection help attendees understand their travel arrangements before booking.", "A familiar booking experience. A web-based flow lets users make their plans without needing to install a dedicated mobile app.", "Designed for the context. Route11 is being developed around Nairobi’s event-going culture and the practical challenges of organising transport for busy events."]],
+    ["What I’m learning", "Building Route11 has pushed me to think beyond the interface. A useful product must connect what users need with the operational realities of delivering the service. That means considering the entire journey, making decisions about what belongs in the initial experience, and balancing customer convenience with the requirements of running an event transport service."],
+    ["Current direction", "Route11 is being developed as an event mobility platform, with a web booking experience that brings event transport planning into one place. The longer-term vision is to make the journey an organised part of the event experience, from the first booking decision to the trip home."],
+  ] },
+];
+
 const TOOLBOX = [
-  ["Analysis & discovery", ["Stakeholder interviews", "Requirements gathering", "Process mapping", "User documentation"]],
-  ["Product & quality", ["Manual QA", "Functional testing"]],
-  ["Tools & platforms", ["Figma", "Grafana", "Dynatrace", "Shopify", "Git"]],
-  ["Development", ["TypeScript", "React / Next.js", "React Native", "Kotlin / Compose", "Tailwind"]],
+  ["Product & business", ["Requirements gathering", "User needs analysis", "Business needs analysis", "Problem solving", "UI/UX design"]],
+  ["Collaboration & delivery", ["Stakeholder collaboration", "Cross-functional coordination", "Quality assurance", "User documentation"]],
+  ["Tools & platforms", ["Jira", "Figma", "Shopify", "Dynatrace", "Grafana", "Microsoft Azure"]],
+  ["Technical", ["JavaScript", "TypeScript", "HTML/CSS", "PHP", "Elixir", "Next.js", "Astro", "Tailwind CSS"]],
 ] as const;
 
 const SOCIALS = [
@@ -40,7 +76,7 @@ const SOCIALS = [
   { name: "Strava", note: "Proof I do go outside", href: "https://www.strava.com/athletes/95879820", icon: "M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.598h4.172L10.463 0l-7 13.828h4.169" },
 ];
 
-const ABOUT_LINE = "I enjoy working at the intersection of business and technology, understanding people’s needs, and figuring out how to turn them into products that work better for the people who use them.".split(" ");
+const ABOUT_LINE = "I’m always learning, exploring new ideas, and looking for ways to make technology more useful to the people it serves.".split(" ");
 
 const SPARKLE = "M12 0c.6 6.4 5.6 11.4 12 12-6.4.6-11.4 5.6-12 12-.6-6.4-5.6-11.4-12-12 6.4-.6 11.4-5.6 12-12z";
 
@@ -145,18 +181,18 @@ export default function Home() {
               <h1 style={{ ...serif, margin: 0, fontSize: 36, lineHeight: 1.05, letterSpacing: "-0.01em" }}>Alex Wangwe</h1>
               <p style={{ margin: 0, display: "flex", alignItems: "center", gap: 8, fontSize: 14, color: "var(--muted)" }}>
                 <span className="dot" style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--accent)" }} aria-hidden="true" />
-                Business &amp; Product Analyst
+                Product Management | Business &amp; Technology
               </p>
             </div>
 
             <p style={{ margin: 0, fontSize: 15, color: "var(--soft)" }}>
-              I like understanding how things work, asking questions, and finding ways to make them better. With a background in business and technology, I enjoy working through problems with people and turning ideas into practical solutions. Always curious, always learning, and always up for a good conversation.
+              I’m curious about how things work, why people use them the way they do, and how they can be made better.
             </p>
 
             <dl style={{ margin: 0, display: "grid", gridTemplateColumns: "repeat(2, minmax(0, 1fr))", gap: "14px 16px", paddingTop: 18, borderTop: "1px dashed var(--border)", fontSize: 14 }}>
               {[
                 ["Based in", "Nairobi, Kenya"],
-                ["Currently", "Open to analyst roles"],
+                ["Currently", "Open to product roles"],
               ].map(([k, v]) => (
                 <div key={k as string}>
                   <dt style={{ fontSize: 12, color: "var(--muted)" }}>{k}</dt>
@@ -212,7 +248,7 @@ export default function Home() {
                 {ABOUT_LINE.map((w, i) => <span key={i} className="wd">{w} </span>)}
               </p>
               <div style={{ display: "flex", flexDirection: "column", gap: 14, maxWidth: 620, fontSize: 17, color: "var(--soft)" }}>
-                <p style={{ margin: 0 }}>Good technology starts with understanding the people it’s meant to serve. That means looking beyond what a system does to understand why it’s needed, what could work better, and how it can make a real difference.</p>
+                <p style={{ margin: 0 }}>With a background in business and technology, I enjoy understanding people’s needs, asking the right questions, and working with others to turn problems into practical solutions.</p>
               </div>
             </section>
 
@@ -238,13 +274,50 @@ export default function Home() {
                         <span style={{ fontSize: 13, color: "var(--muted)" }}>{e.when}</span>
                       </div>
                       <span style={{ fontSize: 14, color: "var(--muted)" }}>{e.co}</span>
-                      <p style={{ margin: "6px 0 0", fontSize: 15, color: "var(--soft)" }}>{e.text}</p>
+                      <p style={{ margin: "6px 0 0", fontSize: 15, color: "var(--soft)" }}>{withProof(e.text)}</p>
                     </div>
                   </article>
                 ))}
               </div>
-              {/* TODO: add public/alex-wangwe-cv.pdf before shipping, or this link 404s */}
               <a href="/alex-wangwe-cv.pdf" download className="btn" style={{ alignSelf: "flex-start", display: "inline-flex", alignItems: "center", minHeight: 48, padding: "0 22px", borderRadius: 999, border: "1px solid var(--border)", textDecoration: "none", fontSize: 15, fontWeight: 500 }}>Download CV</a>
+            </section>
+
+            <section id="cases" className="rv" style={sectionStyle()}>
+              <h2 style={h2Style}>
+                <Doodle blob={[34, 30]}>
+                  <path d="M10 8h34v48H10z" />
+                  <path d="M18 18h18M18 26h18M18 34h10" />
+                  <path d="M40 50l16-16 6 6-16 16-8 2z" />
+                </Doodle>
+                Case studies
+                <Squiggle />
+              </h2>
+              <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                {CASES.map((c, i) => (
+                  <article key={c.name} className="card st" style={{ ...delay(150 + i * 120), padding: 24, borderRadius: 20, background: "var(--card)", border: "1px solid var(--border)", display: "flex", flexDirection: "column", gap: 14 }}>
+                    <span style={{ fontSize: 13, color: "var(--muted)" }}>Case study {i + 1} · {c.tags}</span>
+                    <h3 style={{ ...serif, margin: 0, fontSize: 28, lineHeight: 1.1 }}>{c.name}</h3>
+                    <p style={{ margin: 0, fontSize: 17, color: "var(--soft)" }}>{c.tagline}</p>
+                    {c.shots && (
+                      <div style={{ display: "flex", gap: 12, overflowX: "auto" }}>
+                        {c.shots.map((src) => <Image key={src} src={src} alt={`${c.name} screenshot`} width={360} height={640} style={{ height: 320, width: "auto", borderRadius: 12, border: "1px solid var(--border)" }} />)}
+                      </div>
+                    )}
+                    <details>
+                      <summary style={{ cursor: "pointer", fontSize: 15, fontWeight: 500, minHeight: 32 }}>Read the case study</summary>
+                      <div style={{ display: "flex", flexDirection: "column", gap: 18, paddingTop: 16, fontSize: 15, color: "var(--soft)" }}>
+                        {c.blocks.map(([h, b]) => (
+                          <div key={h} style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                            <h4 style={{ margin: 0, fontSize: 13, fontWeight: 500, color: "var(--muted)" }}>{h}</h4>
+                            {typeof b === "string" ? <p style={{ margin: 0 }}>{b}</p> : <ul style={{ margin: 0, paddingLeft: 20, display: "flex", flexDirection: "column", gap: 6 }}>{b.map((t) => <li key={t}>{t}</li>)}</ul>}
+                          </div>
+                        ))}
+                      </div>
+                    </details>
+                    {c.link && <a href={c.link} target="_blank" rel="noopener noreferrer" className="btn" style={{ alignSelf: "flex-start", display: "inline-flex", alignItems: "center", minHeight: 48, padding: "0 22px", borderRadius: 999, background: "var(--text)", color: "var(--bg)", textDecoration: "none", fontSize: 15, fontWeight: 500 }}>Visit {c.name} ↗</a>}
+                  </article>
+                ))}
+              </div>
             </section>
 
             <section id="toolbox" className="rv" style={sectionStyle(20)}>
